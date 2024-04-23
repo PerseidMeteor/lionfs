@@ -10,6 +10,9 @@
 #include <sys/stat.h>
 #include <dirent.h>
 
+// for remote download
+#include "proxy.h"
+
 static const char *dir_path = "/home/yq/realdir";
 
 void full_path(char fpath[1000], const char *path)
@@ -34,6 +37,16 @@ static int xmp_getattr(const char *path, struct stat *stbuf, struct fuse_file_in
     full_path(fpath, path);
     printf("getattr called on %s\n", path);
     res = lstat(fpath, stbuf);
+    std::string full_path2 = fpath;
+    if (res == -1 && errno == ENOENT) {
+        if (strcmp(path, "/d.txt") == 0 || strcmp(path, "hello.so") == 0) { // 只对 d.txt 文件处理
+            if (download_file(path, full_path2) == 0) {
+                res = lstat(fpath, stbuf);
+                return (res == -1) ? -errno : 0;
+            }
+        }
+        return -errno;
+    }
     if (res == -1)
         return -errno;
 
@@ -65,6 +78,30 @@ static int xmp_open(const char *path, struct fuse_file_info *fi)
 
     close(res);
     printf("open called on %s\n", path);
+    return 0;
+}
+
+static int do_open(const char *path, struct fuse_file_info *fi) {
+    int fd;
+    std::string full_path = std::string(dir_path) + path;
+
+    fd = open(full_path.c_str(), fi->flags);
+    if (fd == -1)
+        return -errno;
+
+    if (access(full_path.c_str(), F_OK) != -1) {
+        // File exists
+        fi->fh = fd;
+    } else {
+        // File doesn't exist, try to download it
+        if (download_file(path, full_path) == 0) {
+            fd = open(full_path.c_str(), fi->flags);
+            fi->fh = fd;
+        } else {
+            return -ENOENT;
+        }
+    }
+
     return 0;
 }
 
@@ -205,7 +242,7 @@ static struct fuse_operations xmp_oper = {
     .unlink = xmp_unlink,
     .rmdir = xmp_rmdir,
     .rename = xmp_rename,
-    .open = xmp_open,
+    .open = do_open,
     .read = xmp_read,
     .write = xmp_write,
     .readdir = xmp_readdir,
