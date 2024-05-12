@@ -1,0 +1,8 @@
+{
+    "Protocol":"http",
+    "Address":"127.0.0.1:2077",
+    "Username":"admin",
+    "Password":"123456",
+    "RWDir": "/home/yq/realdir",
+    "Image": "10.68.49.26:8088/library/ubuntu:18.04"
+}

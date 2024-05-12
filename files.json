@@ -1,0 +1,2046 @@
+[
+    {
+      "type": "directory",
+      "path": "/bin"
+    },
+    {
+      "type": "file",
+      "path": "/bin/dash"
+    },
+    {
+      "type": "file",
+      "path": "/bin/grep"
+    },
+    {
+      "type": "file",
+      "path": "/bin/sed"
+    },
+    {
+      "type": "symlink",
+      "path": "/bin/sh"
+    },
+    {
+      "type": "file",
+      "path": "/bin/touch"
+    },
+    {
+      "type": "directory",
+      "path": "/dev"
+    },
+    {
+      "type": "symlink",
+      "path": "/dev/stderr"
+    },
+    {
+      "type": "symlink",
+      "path": "/dev/stdout"
+    },
+    {
+      "type": "directory",
+      "path": "/docker-entrypoint.d"
+    },
+    {
+      "type": "file",
+      "path": "/docker-entrypoint.d/10-listen-on-ipv6-by-default.sh"
+    },
+    {
+      "type": "file",
+      "path": "/docker-entrypoint.d/20-envsubst-on-templates.sh"
+    },
+    {
+      "type": "file",
+      "path": "/docker-entrypoint.d/30-tune-worker-processes.sh"
+    },
+    {
+      "type": "file",
+      "path": "/docker-entrypoint.sh"
+    },
+    {
+      "type": "directory",
+      "path": "/etc"
+    },
+    {
+      "type": "file",
+      "path": "/etc/group"
+    },
+    {
+      "type": "file",
+      "path": "/etc/host.conf"
+    },
+    {
+      "type": "file",
+      "path": "/etc/ld.so.cache"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/localtime"
+    },
+    {
+      "type": "directory",
+      "path": "/etc/nginx"
+    },
+    {
+      "type": "directory",
+      "path": "/etc/nginx/conf.d"
+    },
+    {
+      "type": "file",
+      "path": "/etc/nginx/conf.d/default.conf"
+    },
+    {
+      "type": "file",
+      "path": "/etc/nginx/mime.types"
+    },
+    {
+      "type": "file",
+      "path": "/etc/nginx/nginx.conf"
+    },
+    {
+      "type": "file",
+      "path": "/etc/nsswitch.conf"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/os-release"
+    },
+    {
+      "type": "file",
+      "path": "/etc/passwd"
+    },
+    {
+      "type": "file",
+      "path": "/etc/resolv.conf"
+    },
+    {
+      "type": "directory",
+      "path": "/etc/ssl"
+    },
+    {
+      "type": "directory",
+      "path": "/etc/ssl/certs"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/02265526.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/03179a64.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/062cdee6.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/064e0aa9.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/06dc52d5.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/080911ac.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/09789157.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/0a775a30.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/0b1b94ef.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/0bf05006.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/0c4c9b6c.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/0f5dc4f3.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/0f6fa695.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/1001acf7.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/106f3e4d.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/116bf586.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/14bc7599.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/1636090b.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/18856ac4.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/1d3472b9.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/1e08bfd1.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/1e09d511.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/244b5494.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/2923b3f9.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/2ae6433e.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/2b349938.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/2e5ac55d.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/32888f65.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/349f2832.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/3513523f.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/3bde41ac.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/3e44d2f7.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/3e45d192.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/3fb36b73.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/40193066.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/4042bcee.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/40547a79.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/406c9bb1.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/4304c5e5.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/48bec511.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/4a6481c9.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/4b718d9b.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/4bfab552.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/4f316efb.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/5273a94c.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/5443e9e3.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/54657681.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/57bcb2da.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/5a4d6896.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/5ad8a5d6.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/5cd81ad7.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/5d3033c5.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/5e98733a.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/5f15c80c.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/5f618aec.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/607986c7.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/626dceaf.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/653b494a.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/68dd7389.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/6b99d060.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/6d41d539.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/6fa5da56.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/706f604c.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/749e9e03.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/75d1b2ed.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/76cb8f92.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/76faf6c0.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/7719f463.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/773e07ad.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/7aaf71c0.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/7f3d5d1d.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/8160b96c.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/8cb5ee0f.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/8d86cdd1.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/8d89cda1.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/930ac5d2.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/93bc0acc.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/988a38cb.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/9b5697b0.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/9c2e7d30.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/9c8dfbd4.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/9d04f354.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/ACCVRAIZ1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/AC_RAIZ_FNMT-RCM.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Actalis_Authentication_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/AffirmTrust_Commercial.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/AffirmTrust_Networking.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/AffirmTrust_Premium.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/AffirmTrust_Premium_ECC.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Amazon_Root_CA_1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Amazon_Root_CA_2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Amazon_Root_CA_3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Amazon_Root_CA_4.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Atos_TrustedRoot_2011.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Baltimore_CyberTrust_Root.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Buypass_Class_2_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Buypass_Class_3_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/CA_Disig_Root_R2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/CFCA_EV_ROOT.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/COMODO_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/COMODO_ECC_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/COMODO_RSA_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Certigna.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Certigna_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Certum_Trusted_Network_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Certum_Trusted_Network_CA_2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Chambers_of_Commerce_Root_-_2008.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Comodo_AAA_Services_root.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Cybertrust_Global_Root.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/D-TRUST_Root_Class_3_CA_2_2009.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/D-TRUST_Root_Class_3_CA_2_EV_2009.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/DST_Root_CA_X3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/DigiCert_Assured_ID_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/DigiCert_Assured_ID_Root_G2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/DigiCert_Assured_ID_Root_G3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/DigiCert_Global_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/DigiCert_Global_Root_G2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/DigiCert_Global_Root_G3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/DigiCert_High_Assurance_EV_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/DigiCert_Trusted_Root_G4.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/E-Tugra_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/EC-ACC.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Entrust.net_Premium_2048_Secure_Server_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Entrust_Root_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Entrust_Root_Certification_Authority_-_EC1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Entrust_Root_Certification_Authority_-_G2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Entrust_Root_Certification_Authority_-_G4.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/GDCA_TrustAUTH_R5_ROOT.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/GTS_Root_R1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/GTS_Root_R2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/GTS_Root_R3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/GTS_Root_R4.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/GeoTrust_Primary_Certification_Authority_-_G2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/GlobalSign_ECC_Root_CA_-_R4.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/GlobalSign_ECC_Root_CA_-_R5.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/GlobalSign_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/GlobalSign_Root_CA_-_R2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/GlobalSign_Root_CA_-_R3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/GlobalSign_Root_CA_-_R6.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Global_Chambersign_Root_-_2008.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Go_Daddy_Class_2_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Go_Daddy_Root_Certificate_Authority_-_G2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Hellenic_Academic_and_Research_Institutions_ECC_RootCA_2015.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Hellenic_Academic_and_Research_Institutions_RootCA_2011.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Hellenic_Academic_and_Research_Institutions_RootCA_2015.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Hongkong_Post_Root_CA_1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Hongkong_Post_Root_CA_3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/ISRG_Root_X1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/IdenTrust_Commercial_Root_CA_1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/IdenTrust_Public_Sector_Root_CA_1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Izenpe.com.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Microsec_e-Szigno_Root_CA_2009.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Microsoft_ECC_Root_Certificate_Authority_2017.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Microsoft_RSA_Root_Certificate_Authority_2017.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/NAVER_Global_Root_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/NetLock_Arany_=Class_Gold=_Főtanúsítvány.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Network_Solutions_Certificate_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/OISTE_WISeKey_Global_Root_GB_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/OISTE_WISeKey_Global_Root_GC_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/QuoVadis_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/QuoVadis_Root_CA_1_G3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/QuoVadis_Root_CA_2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/QuoVadis_Root_CA_2_G3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/QuoVadis_Root_CA_3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/QuoVadis_Root_CA_3_G3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/SSL.com_EV_Root_Certification_Authority_ECC.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/SSL.com_EV_Root_Certification_Authority_RSA_R2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/SSL.com_Root_Certification_Authority_ECC.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/SSL.com_Root_Certification_Authority_RSA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/SZAFIR_ROOT_CA2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/SecureSign_RootCA11.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/SecureTrust_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Secure_Global_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Security_Communication_RootCA2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Security_Communication_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Sonera_Class_2_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Staat_der_Nederlanden_EV_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Staat_der_Nederlanden_Root_CA_-_G3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Starfield_Class_2_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Starfield_Root_Certificate_Authority_-_G2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Starfield_Services_Root_Certificate_Authority_-_G2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/SwissSign_Gold_CA_-_G2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/SwissSign_Silver_CA_-_G2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/T-TeleSec_GlobalRoot_Class_2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/T-TeleSec_GlobalRoot_Class_3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/TUBITAK_Kamu_SM_SSL_Kok_Sertifikasi_-_Surum_1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/TWCA_Global_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/TWCA_Root_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/TeliaSonera_Root_CA_v1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/TrustCor_ECA-1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/TrustCor_RootCert_CA-1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/TrustCor_RootCert_CA-2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Trustis_FPS_Root_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Trustwave_Global_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Trustwave_Global_ECC_P256_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/Trustwave_Global_ECC_P384_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/UCA_Extended_Validation_Root.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/UCA_Global_G2_Root.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/USERTrust_ECC_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/USERTrust_RSA_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/VeriSign_Universal_Root_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/XRamp_Global_CA_Root.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/a3418fda.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/a94d09e5.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/aee5f10d.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/b0e59380.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/b1159c4c.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/b66938e9.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/b727005e.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/b7a5b843.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/bf53fb88.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/c01cdfa2.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/c01eb047.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/c28a8a30.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/c47d9980.0"
+    },
+    {
+      "type": "file",
+      "path": "/etc/ssl/certs/ca-certificates.crt"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/ca6e4ad9.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/cbf06781.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/cc450945.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/cd58d51e.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/cd8c0d63.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/ce5e74ef.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/certSIGN_ROOT_CA.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/certSIGN_Root_CA_G2.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/d4dae3dd.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/d6325660.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/d7e8dc79.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/d853d49e.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/d887a5bb.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/dc4d6a89.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/dd8e9d41.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/de6d66f3.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/e-Szigno_Root_CA_2017.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/e113c810.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/e18bfb83.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/e36a6752.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/e73d606e.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/e868b802.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/e8de2f56.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/ePKI_Root_Certification_Authority.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/ee64a828.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/eed8c118.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/ef954a4e.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/emSign_ECC_Root_CA_-_C3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/emSign_ECC_Root_CA_-_G3.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/emSign_Root_CA_-_C1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/emSign_Root_CA_-_G1.pem"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/f081611a.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/f0c70a8d.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/f249de83.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/f30dd6ad.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/f3377b1b.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/f387163d.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/f39fc864.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/f51bb24c.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/fc5a8f99.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/fe8a2cd8.0"
+    },
+    {
+      "type": "symlink",
+      "path": "/etc/ssl/certs/ff34af3f.0"
+    },
+    {
+      "type": "file",
+      "path": "/etc/ssl/openssl.cnf"
+    },
+    {
+      "type": "directory",
+      "path": "/lib"
+    },
+    {
+      "type": "directory",
+      "path": "/lib/x86_64-linux-gnu"
+    },
+    {
+      "type": "file",
+      "path": "/lib/x86_64-linux-gnu/ld-2.31.so"
+    },
+    {
+      "type": "symlink",
+      "path": "/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+    },
+    {
+      "type": "file",
+      "path": "/lib/x86_64-linux-gnu/libc-2.31.so"
+    },
+    {
+      "type": "symlink",
+      "path": "/lib/x86_64-linux-gnu/libc.so.6"
+    },
+    {
+      "type": "symlink",
+      "path": "/lib/x86_64-linux-gnu/libcrypt.so.1"
+    },
+    {
+      "type": "file",
+      "path": "/lib/x86_64-linux-gnu/libcrypt.so.1.1.0"
+    },
+    {
+      "type": "file",
+      "path": "/lib/x86_64-linux-gnu/libdl-2.31.so"
+    },
+    {
+      "type": "symlink",
+      "path": "/lib/x86_64-linux-gnu/libdl.so.2"
+    },
+    {
+      "type": "file",
+      "path": "/lib/x86_64-linux-gnu/libm-2.31.so"
+    },
+    {
+      "type": "symlink",
+      "path": "/lib/x86_64-linux-gnu/libm.so.6"
+    },
+    {
+      "type": "file",
+      "path": "/lib/x86_64-linux-gnu/libnss_dns-2.31.so"
+    },
+    {
+      "type": "symlink",
+      "path": "/lib/x86_64-linux-gnu/libnss_dns.so.2"
+    },
+    {
+      "type": "file",
+      "path": "/lib/x86_64-linux-gnu/libnss_files-2.31.so"
+    },
+    {
+      "type": "symlink",
+      "path": "/lib/x86_64-linux-gnu/libnss_files.so.2"
+    },
+    {
+      "type": "symlink",
+      "path": "/lib/x86_64-linux-gnu/libpcre.so.3"
+    },
+    {
+      "type": "file",
+      "path": "/lib/x86_64-linux-gnu/libpcre.so.3.13.3"
+    },
+    {
+      "type": "file",
+      "path": "/lib/x86_64-linux-gnu/libpthread-2.31.so"
+    },
+    {
+      "type": "symlink",
+      "path": "/lib/x86_64-linux-gnu/libpthread.so.0"
+    },
+    {
+      "type": "file",
+      "path": "/lib/x86_64-linux-gnu/libresolv-2.31.so"
+    },
+    {
+      "type": "symlink",
+      "path": "/lib/x86_64-linux-gnu/libresolv.so.2"
+    },
+    {
+      "type": "file",
+      "path": "/lib/x86_64-linux-gnu/libselinux.so.1"
+    },
+    {
+      "type": "symlink",
+      "path": "/lib/x86_64-linux-gnu/libz.so.1"
+    },
+    {
+      "type": "file",
+      "path": "/lib/x86_64-linux-gnu/libz.so.1.2.11"
+    },
+    {
+      "type": "directory",
+      "path": "/lib64"
+    },
+    {
+      "type": "symlink",
+      "path": "/lib64/ld-linux-x86-64.so.2"
+    },
+    {
+      "type": "directory",
+      "path": "/proc"
+    },
+    {
+      "type": "directory",
+      "path": "/proc/self"
+    },
+    {
+      "type": "directory",
+      "path": "/proc/self/fd"
+    },
+    {
+      "type": "symlink",
+      "path": "/proc/self/fd/1"
+    },
+    {
+      "type": "symlink",
+      "path": "/proc/self/fd/2"
+    },
+    {
+      "type": "directory",
+      "path": "/run"
+    },
+    {
+      "type": "directory",
+      "path": "/tmp"
+    },
+    {
+      "type": "directory",
+      "path": "/usr"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/bin"
+    },
+    {
+      "type": "file",
+      "path": "/usr/bin/basename"
+    },
+    {
+      "type": "file",
+      "path": "/usr/bin/cut"
+    },
+    {
+      "type": "file",
+      "path": "/usr/bin/dpkg-query"
+    },
+    {
+      "type": "file",
+      "path": "/usr/bin/env"
+    },
+    {
+      "type": "file",
+      "path": "/usr/bin/find"
+    },
+    {
+      "type": "file",
+      "path": "/usr/bin/md5sum"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/bin/md5sum.textutils"
+    },
+    {
+      "type": "file",
+      "path": "/usr/bin/sort"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/bin/touch"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/lib"
+    },
+    {
+      "type": "file",
+      "path": "/usr/lib/os-release"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/lib/ssl"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/lib/ssl/certs"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/lib/ssl/openssl.cnf"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/lib/x86_64-linux-gnu"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/lib/x86_64-linux-gnu/libacl.so.1"
+    },
+    {
+      "type": "file",
+      "path": "/usr/lib/x86_64-linux-gnu/libacl.so.1.1.2253"
+    },
+    {
+      "type": "file",
+      "path": "/usr/lib/x86_64-linux-gnu/libcrypto.so.1.1"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/lib/x86_64-linux-gnu/libpcre2-8.so.0"
+    },
+    {
+      "type": "file",
+      "path": "/usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.10.1"
+    },
+    {
+      "type": "file",
+      "path": "/usr/lib/x86_64-linux-gnu/libssl.so.1.1"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/local"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/local/share"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/local/share/ca-certificates"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/sbin"
+    },
+    {
+      "type": "file",
+      "path": "/usr/sbin/nginx"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/share"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/share/ca-certificates"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/share/ca-certificates/mozilla"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/ACCVRAIZ1.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/AC_RAIZ_FNMT-RCM.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Actalis_Authentication_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/AffirmTrust_Commercial.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/AffirmTrust_Networking.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/AffirmTrust_Premium.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/AffirmTrust_Premium_ECC.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Amazon_Root_CA_1.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Amazon_Root_CA_2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Amazon_Root_CA_3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Amazon_Root_CA_4.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Atos_TrustedRoot_2011.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Baltimore_CyberTrust_Root.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Buypass_Class_2_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Buypass_Class_3_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/CA_Disig_Root_R2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/CFCA_EV_ROOT.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/COMODO_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/COMODO_ECC_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/COMODO_RSA_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Certigna.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Certigna_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Certum_Trusted_Network_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Certum_Trusted_Network_CA_2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Chambers_of_Commerce_Root_-_2008.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Comodo_AAA_Services_root.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Cybertrust_Global_Root.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/D-TRUST_Root_Class_3_CA_2_2009.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/D-TRUST_Root_Class_3_CA_2_EV_2009.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/DST_Root_CA_X3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/DigiCert_Assured_ID_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/DigiCert_Assured_ID_Root_G2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/DigiCert_Assured_ID_Root_G3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/DigiCert_Global_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/DigiCert_Global_Root_G2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/DigiCert_Global_Root_G3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/DigiCert_High_Assurance_EV_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/DigiCert_Trusted_Root_G4.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/E-Tugra_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/EC-ACC.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Entrust.net_Premium_2048_Secure_Server_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Entrust_Root_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Entrust_Root_Certification_Authority_-_EC1.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Entrust_Root_Certification_Authority_-_G2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Entrust_Root_Certification_Authority_-_G4.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/GDCA_TrustAUTH_R5_ROOT.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/GTS_Root_R1.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/GTS_Root_R2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/GTS_Root_R3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/GTS_Root_R4.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/GeoTrust_Primary_Certification_Authority_-_G2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/GlobalSign_ECC_Root_CA_-_R4.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/GlobalSign_ECC_Root_CA_-_R5.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/GlobalSign_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/GlobalSign_Root_CA_-_R2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/GlobalSign_Root_CA_-_R3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/GlobalSign_Root_CA_-_R6.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Global_Chambersign_Root_-_2008.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Go_Daddy_Class_2_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Go_Daddy_Root_Certificate_Authority_-_G2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Hellenic_Academic_and_Research_Institutions_ECC_RootCA_2015.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Hellenic_Academic_and_Research_Institutions_RootCA_2011.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Hellenic_Academic_and_Research_Institutions_RootCA_2015.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Hongkong_Post_Root_CA_1.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Hongkong_Post_Root_CA_3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/ISRG_Root_X1.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/IdenTrust_Commercial_Root_CA_1.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/IdenTrust_Public_Sector_Root_CA_1.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Izenpe.com.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Microsec_e-Szigno_Root_CA_2009.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Microsoft_ECC_Root_Certificate_Authority_2017.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Microsoft_RSA_Root_Certificate_Authority_2017.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/NAVER_Global_Root_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/NetLock_Arany_=Class_Gold=_Főtanúsítvány.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Network_Solutions_Certificate_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/OISTE_WISeKey_Global_Root_GB_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/OISTE_WISeKey_Global_Root_GC_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/QuoVadis_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/QuoVadis_Root_CA_1_G3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/QuoVadis_Root_CA_2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/QuoVadis_Root_CA_2_G3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/QuoVadis_Root_CA_3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/QuoVadis_Root_CA_3_G3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/SSL.com_EV_Root_Certification_Authority_ECC.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/SSL.com_EV_Root_Certification_Authority_RSA_R2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/SSL.com_Root_Certification_Authority_ECC.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/SSL.com_Root_Certification_Authority_RSA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/SZAFIR_ROOT_CA2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/SecureSign_RootCA11.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/SecureTrust_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Secure_Global_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Security_Communication_RootCA2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Security_Communication_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Sonera_Class_2_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Staat_der_Nederlanden_EV_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Staat_der_Nederlanden_Root_CA_-_G3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Starfield_Class_2_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Starfield_Root_Certificate_Authority_-_G2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Starfield_Services_Root_Certificate_Authority_-_G2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/SwissSign_Gold_CA_-_G2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/SwissSign_Silver_CA_-_G2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/T-TeleSec_GlobalRoot_Class_2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/T-TeleSec_GlobalRoot_Class_3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/TUBITAK_Kamu_SM_SSL_Kok_Sertifikasi_-_Surum_1.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/TWCA_Global_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/TWCA_Root_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/TeliaSonera_Root_CA_v1.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/TrustCor_ECA-1.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/TrustCor_RootCert_CA-1.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/TrustCor_RootCert_CA-2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Trustis_FPS_Root_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Trustwave_Global_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Trustwave_Global_ECC_P256_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/Trustwave_Global_ECC_P384_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/UCA_Extended_Validation_Root.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/UCA_Global_G2_Root.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/USERTrust_ECC_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/USERTrust_RSA_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/VeriSign_Universal_Root_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/XRamp_Global_CA_Root.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/certSIGN_ROOT_CA.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/certSIGN_Root_CA_G2.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/e-Szigno_Root_CA_2017.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/ePKI_Root_Certification_Authority.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/emSign_ECC_Root_CA_-_C3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/emSign_ECC_Root_CA_-_G3.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/emSign_Root_CA_-_C1.crt"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/ca-certificates/mozilla/emSign_Root_CA_-_G1.crt"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/share/nginx"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/share/nginx/html"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/nginx/html/index.html"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/share/zoneinfo"
+    },
+    {
+      "type": "directory",
+      "path": "/usr/share/zoneinfo/Etc"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/share/zoneinfo/Etc/UCT"
+    },
+    {
+      "type": "file",
+      "path": "/usr/share/zoneinfo/Etc/UTC"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/share/zoneinfo/Etc/Universal"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/share/zoneinfo/Etc/Zulu"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/share/zoneinfo/UCT"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/share/zoneinfo/UTC"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/share/zoneinfo/Universal"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/share/zoneinfo/Zulu"
+    },
+    {
+      "type": "symlink",
+      "path": "/usr/share/zoneinfo/localtime"
+    },
+    {
+      "type": "directory",
+      "path": "/var"
+    },
+    {
+      "type": "directory",
+      "path": "/var/cache"
+    },
+    {
+      "type": "directory",
+      "path": "/var/cache/nginx"
+    },
+    {
+      "type": "directory",
+      "path": "/var/lib"
+    },
+    {
+      "type": "directory",
+      "path": "/var/lib/dpkg"
+    },
+    {
+      "type": "file",
+      "path": "/var/lib/dpkg/status"
+    },
+    {
+      "type": "directory",
+      "path": "/var/lib/dpkg/triggers"
+    },
+    {
+      "type": "file",
+      "path": "/var/lib/dpkg/triggers/Unincorp"
+    },
+    {
+      "type": "directory",
+      "path": "/var/log"
+    },
+    {
+      "type": "directory",
+      "path": "/var/log/nginx"
+    },
+    {
+      "type": "symlink",
+      "path": "/var/log/nginx/access.log"
+    },
+    {
+      "type": "symlink",
+      "path": "/var/log/nginx/error.log"
+    },
+    {
+      "type": "symlink",
+      "path": "/var/run"
+    }
+  ]

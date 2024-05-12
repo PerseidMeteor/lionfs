@@ -25,22 +25,26 @@
 #include "include/rapidjson/filereadstream.h"
 #include <cstdio>
 
-static const char *dir_path = "/home/yq/realdir";
-
+// for config
+#include "config.h"
 
 /********************************protocol********************************************/
+std::string remove_prefix(const char *input, const std::string &prefix);
 
-std::string remove_prefix(const char* input, const std::string& prefix);
+bool has_prefix(const char* str, const char* prefix);
 
-/****************************************************************************/
+/************************************************************************************/
 
-
+/********************************varible*********************************************/
 // key is path, value is type
 static std::unordered_map<std::string, std::string> mp;
 
+static Config *config;
+/************************************************************************************/
+
 void full_path(char fpath[1000], const char *path)
 {
-    strcpy(fpath, dir_path); // Assuming dir_path is the path to the base directory in the underlying file system
+    strcpy(fpath, config->rw_dir_.c_str()); // Assuming dir_path is the path to the base directory in the underlying file system
     if (strcmp(path, "/") != 0)
         strncat(fpath, path, 1000 - strlen(fpath) - 1); // Append path unless it's the root
 }
@@ -64,10 +68,12 @@ static int xmp_getattr(const char *path, struct stat *stbuf, struct fuse_file_in
 
     if (res == -1 && errno == ENOENT)
     {
-        // 确保下层中没有这样的文件，当且仅当upperdir与lowerdirs中均不存在所需的文件，才进行拉取
-        if (mp.find(remove_prefix(path, "/upperdir")) == mp.end())
-        {   
-            if (download_file(path, fpath) == 0)
+        std::string file_name = remove_prefix(path, "/upperdir");
+        // 确保下层中没有这样的文件，当且仅当upperdir与lowerdirs中均不存在所需的文件，且该文件不为白化文件，
+        // 才进行拉取
+        if (!has_prefix(file_name.c_str(), ".wh.") && mp.find(file_name) == mp.end())
+        {
+            if (download_file(config->address_, config->image_, path, fpath) == 0)
             {
                 res = lstat(fpath, stbuf);
                 return (res == -1) ? -errno : 0;
@@ -86,20 +92,24 @@ static int xmp_getattr(const char *path, struct stat *stbuf, struct fuse_file_in
 
         std::vector<std::string> libs;
         int lib_res = analyze_executable_libraries(fpath, libs);
-        if (lib_res == -1) {
+        if (lib_res == -1)
+        {
             std::cout << "[DEBUG] executable file1 " << fpath << std::endl;
             return -errno;
         }
-        for(int i = 0; i < libs.size(); ++i) {
+        for (int i = 0; i < libs.size(); ++i)
+        {
             std::cout << "[DEBUG] executable file2 " << fpath << std::endl;
             char lib_path[1000];
             libs[i] = "/" + libs[i];
             full_path(lib_path, libs[i].c_str());
             struct stat *lib_stbuf;
             res = lstat(lib_path, lib_stbuf);
-            if (res == -1 && errno == ENOENT) {
+            if (res == -1 && errno == ENOENT)
+            {
                 std::cout << "[DEBUG] executable file3 " << path << std::endl;
-                if (download_file(libs[i].c_str(), lib_path) == 0) {
+                if (download_file(config->address_, config->image_, libs[i].c_str(), lib_path) == 0)
+                {
                     std::cout << "[FATAL] fetch动态库失败 " << path << std::endl;
                     res = lstat(lib_path, lib_stbuf);
                     return (res == -1) ? -errno : 0;
@@ -144,7 +154,7 @@ static int xmp_open(const char *path, struct fuse_file_info *fi)
     {
         // File doesn't exist, try to download it
         std::cout << "[DEBUG] Try to download file" << fpath << std::endl;
-        if (download_file(path, fpath) == 0)
+        if (download_file(config->address_, config->image_, path, fpath) == 0)
         {
             std::cout << "[DEBUG] Download success" << fpath << std::endl;
             fd = open(fpath, fi->flags);
@@ -512,24 +522,52 @@ static struct fuse_operations xmp_oper = {
 
 void xmp_init()
 {
-// 从镜像的JSON元信息中读取文件信息，并放至内存中
-    FILE* fp = fopen("./files.json", "r"); // 非 Windows 平台使用 "r"
- 
+    // 从镜像的JSON元信息中读取文件信息，并放至内存中
+    FILE *fp = fopen("./files.json", "r"); // 非 Windows 平台使用 "r"
+
     char readBuffer[65536];
     rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
-    
+
     rapidjson::Document d;
     d.ParseStream(is);
 
     assert(d.IsArray());
-    for (rapidjson::SizeType i = 0; i < d.Size(); i++) {
-        if (d[i].HasMember("path") && d[i].HasMember("type") && d[i]["path"].IsString()) {
-            mp.insert(std::pair<std::string, std::string>(d[i]["path"].GetString(),d[i]["type"].GetString()));
+    for (rapidjson::SizeType i = 0; i < d.Size(); i++)
+    {
+        if (d[i].HasMember("path") && d[i].HasMember("type") && d[i]["path"].IsString())
+        {
+            mp.insert(std::pair<std::string, std::string>(d[i]["path"].GetString(), d[i]["type"].GetString()));
             // printf("a[%u] = %s\n", i, d[i]["path"].GetString());
         }
     }
 
-    std::cout << "[DEBUG] mp.size" << mp.size() << std::endl;
+    // std::cout << "[DEBUG] mp.size" << mp.size() << std::endl;
+
+    // 从文件系统的JSON配置信息中读取文件信息，并放至内存中
+    FILE *config_fp = fopen("./config.json", "r"); // 非 Windows 平台使用 "r"
+
+    char configBuffer[65536];
+    rapidjson::FileReadStream config_is(config_fp, configBuffer, sizeof(configBuffer));
+
+    rapidjson::Document config_docu;
+    config_docu.ParseStream(config_is);
+
+    const rapidjson::Value &protocol = config_docu["Protocol"];
+    const rapidjson::Value &address = config_docu["Address"];
+    const rapidjson::Value &user_name = config_docu["Username"];
+    const rapidjson::Value &password = config_docu["Password"];
+    const rapidjson::Value &rw_dir = config_docu["RWDir"];
+    const rapidjson::Value &image = config_docu["Image"];
+
+    if (protocol.IsString() && address.IsString() && user_name.IsString() &&
+            password.IsString() && rw_dir.IsString() && image.IsString()) {
+                config = new Config(protocol.GetString(),address.GetString(),user_name.GetString(),
+                password.GetString(),rw_dir.GetString(),image.GetString());
+    }
+    assert(config != nullptr);
+
+    // std::cout << "[DEBUG] image " << config->image_ << std::endl; 
+    
 }
 
 int main(int argc, char *argv[])

@@ -12,12 +12,12 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
     return written;
 }
 
-int download_file(const char *path, const char* full_path) {
+int download_file(const std::string& host, const std::string& image, const char *path, const char* full_path) {
     std::cout << "[DEBUG] Try to download " << path << std::endl;
     CURL *curl;
     FILE *fp;
     CURLcode res;
-    std::string url = "http://127.0.0.1:2077/file" + std::string(path);
+    std::string url = host + "/file" + std::string(path);
     
     std::cout << "[DEBUG] url: " << url << std::endl << "full_path:" << full_path << std::endl;
 
@@ -36,6 +36,17 @@ int download_file(const char *path, const char* full_path) {
         curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10);  // 设置10秒超时
         // 让libcurl在HTTP >= 400时报错,
         curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1L); 
+
+        // 添加镜像名称的header
+        struct curl_slist* headers = NULL;
+        headers = curl_slist_append(headers, "Authorization: Basic YWRtaW46MTIzNDU2");
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+        char header[100];
+        sprintf(header, "Image: %s", image.c_str());
+        headers = curl_slist_append(headers, header);
+
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
         res = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
         fclose(fp);
