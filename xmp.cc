@@ -20,8 +20,6 @@
 
 // for json works
 #include "include/rapidjson/document.h"
-#include "include/rapidjson/writer.h"
-#include "include/rapidjson/stringbuffer.h"
 #include "include/rapidjson/filereadstream.h"
 #include <cstdio>
 
@@ -570,8 +568,37 @@ void xmp_init()
     
 }
 
+static void parse_args(int &argc, char *argv[], std::vector<char*>& fuse_argv) {
+    // Include the program name as the first argument for FUSE
+    fuse_argv.push_back(argv[0]);
+
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-r") == 0 && i + 1 < argc) {
+            // Handle the custom '-r' argument
+            config->rw_dir_ = argv[i + 1];
+            i++;  // Skip the next argument since it's the directory after '-r'
+        } else {
+            // These are potentially FUSE options or other valid parameters
+            fuse_argv.push_back(argv[i]);
+        }
+    }
+}
 int main(int argc, char *argv[])
 {
+    std::vector<char*> fuse_argv;
+    // use config default
     xmp_init();
-    return fuse_main(argc, argv, &xmp_oper, NULL);
+    // if program has args, use agrs
+    parse_args(argc, argv, fuse_argv);
+
+    std::cout << "RW Directory: " << config->rw_dir_ << std::endl;
+
+    // Convert vector back to array for fuse_main
+    int fuse_argc = static_cast<int>(fuse_argv.size());
+
+    for(int i = 0; i < fuse_argc; ++i) {
+        std::cout << fuse_argv[i] << std::endl;
+    }
+
+    return fuse_main(fuse_argc, fuse_argv.data(), &xmp_oper, NULL);
 }
