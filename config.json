@@ -4,5 +4,5 @@
     "Username":"admin",
     "Password":"123456",
     "RWDir": "/home/yq/realdir",
-    "Image": "10.68.49.26:8088/library/ubuntu:18.04"
+    "Image": "10.68.49.26:8000/library/ubuntu:18.04-lion"
 }

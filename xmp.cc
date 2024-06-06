@@ -1,3 +1,4 @@
+#include <thread>
 #define FUSE_USE_VERSION 31
 
 #include <fuse.h>
@@ -67,55 +68,59 @@ static int xmp_getattr(const char *path, struct stat *stbuf, struct fuse_file_in
     if (res == -1 && errno == ENOENT)
     {
         std::string file_name = remove_prefix(path, "/upperdir");
-        // 确保下层中没有这样的文件，当且仅当upperdir与lowerdirs中均不存在所需的文件，且该文件不为白化文件，
-        // 才进行拉取
+        // 确保下层中没有这样的文件，当且仅当upperdir与lowerdirs中均不存在所需的文件，且该文件不为白化文件，才进行拉取
         if (!has_prefix(file_name.c_str(), ".wh.") && mp.find(file_name) == mp.end())
         {
-            if (download_file(config->address_, config->image_, path, fpath) == 0)
-            {
-                res = lstat(fpath, stbuf);
-                return (res == -1) ? -errno : 0;
-            }
+            int stat_res = get_stat_from_server(config->address_, config->image_, path, stbuf);
+
+            // printf("[Test] %s, %s, %s, %s", config->address_.c_str(), config->image_.c_str(), path, fpath);
+            std::string path_str(path);
+            std::string fpath_str(fpath);
+            std::thread t([=]() {
+                download_file(config->address_, config->image_, path_str, fpath_str);
+            });
+            t.detach();
+
+            return stat_res;
         }
         return -ENOENT;
     }
-
     if (res == -1)
         return -errno;
 
-    // 检查所访问对象是否为可执行文件，如果是可执行文件，则分析其所需的动态库
-    if (S_ISREG(stbuf->st_mode) && ((stbuf->st_mode & S_IXUSR) || (stbuf->st_mode & S_IXGRP) || (stbuf->st_mode & S_IXOTH)))
-    {
-        std::cout << "[DEBUG] is executable file " << path << std::endl;
+    // // 检查所访问对象是否为可执行文件，如果是可执行文件，则分析其所需的动态库
+    // if (S_ISREG(stbuf->st_mode) && ((stbuf->st_mode & S_IXUSR) || (stbuf->st_mode & S_IXGRP) || (stbuf->st_mode & S_IXOTH)))
+    // {
+    //     std::cout << "[DEBUG] is executable file " << path << std::endl;
 
-        std::vector<std::string> libs;
-        int lib_res = analyze_executable_libraries(fpath, libs);
-        if (lib_res == -1)
-        {
-            std::cout << "[DEBUG] executable file1 " << fpath << std::endl;
-            return -errno;
-        }
-        for (int i = 0; i < libs.size(); ++i)
-        {
-            std::cout << "[DEBUG] executable file2 " << fpath << std::endl;
-            char lib_path[1000];
-            libs[i] = "/" + libs[i];
-            full_path(lib_path, libs[i].c_str());
-            struct stat *lib_stbuf;
-            res = lstat(lib_path, lib_stbuf);
-            if (res == -1 && errno == ENOENT)
-            {
-                std::cout << "[DEBUG] executable file3 " << path << std::endl;
-                if (download_file(config->address_, config->image_, libs[i].c_str(), lib_path) == 0)
-                {
-                    std::cout << "[FATAL] fetch动态库失败 " << path << std::endl;
-                    res = lstat(lib_path, lib_stbuf);
-                    return (res == -1) ? -errno : 0;
-                }
-                return -errno;
-            }
-        }
-    }
+    //     std::vector<std::string> libs;
+    //     int lib_res = analyze_executable_libraries(fpath, libs);
+    //     if (lib_res == -1)
+    //     {
+    //         std::cout << "[DEBUG] executable file1 " << fpath << std::endl;
+    //         return -errno;
+    //     }
+    //     for (int i = 0; i < libs.size(); ++i)
+    //     {
+    //         std::cout << "[DEBUG] executable file2 " << fpath << std::endl;
+    //         char lib_path[1000];
+    //         libs[i] = "/" + libs[i];
+    //         full_path(lib_path, libs[i].c_str());
+    //         struct stat *lib_stbuf;
+    //         res = lstat(lib_path, lib_stbuf);
+    //         if (res == -1 && errno == ENOENT)
+    //         {
+    //             std::cout << "[DEBUG] executable file3 " << path << std::endl;
+    //             if (download_file(config->address_, config->image_, libs[i].c_str(), lib_path) == 0)
+    //             {
+    //                 std::cout << "[FATAL] fetch动态库失败 " << path << std::endl;
+    //                 res = lstat(lib_path, lib_stbuf);
+    //                 return (res == -1) ? -errno : 0;
+    //             }
+    //             return -errno;
+    //         }
+    //     }
+    // }
 
     return 0;
 }
@@ -176,11 +181,12 @@ static int xmp_read(const char *path, char *buf, size_t size, off_t offset,
     char fpath[1000];
     full_path(fpath, path);
     (void)fi;
-    std::cout << "[DEBUG] Try to read " << fpath << std::endl;
-    if (strstr(path, ".so"))
-    {
-        std::cout << "Dynamic library access attempt: " << path << std::endl;
-    }
+    // TODO: if dynamic library, try fetch it from remote
+    // std::cout << "[DEBUG] Try to read " << fpath << std::endl;
+    // if (strstr(path, ".so"))
+    // {
+    //     std::cout << "Dynamic library access attempt: " << path << std::endl;
+    // }
     fd = open(fpath, O_RDONLY);
     if (fd == -1)
         return -errno;
@@ -190,7 +196,7 @@ static int xmp_read(const char *path, char *buf, size_t size, off_t offset,
         res = -errno;
 
     close(fd);
-    printf("read called on %s\n", path);
+    // printf("read called on %s\n", path);
     return res;
 }
 
