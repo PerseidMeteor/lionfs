@@ -146,32 +146,36 @@ static int xmp_open(const char *path, struct fuse_file_info *fi)
 
     fd = open(fpath, fi->flags);
     if (fd == -1)
-        return -errno;
-
-    if (access(fpath, F_OK) != -1)
     {
-        // File exists, just return fd
-        fi->fh = fd;
-    }
-    else
-    {
-        // File doesn't exist, try to download it
-        std::cout << "[DEBUG] Try to download file" << fpath << std::endl;
-        if (download_file(config->address_, config->image_, path, fpath) == 0)
+        if (errno == ENOENT)
         {
-            std::cout << "[DEBUG] Download success" << fpath << std::endl;
-            fd = open(fpath, fi->flags);
-            fi->fh = fd;
+            std::cout << "[xmp_OPEN DEBUG] Try to download file " << fpath << std::endl;
+            if (download_file(config->address_, config->image_, path, fpath) == 0)
+            {
+                std::cout << "[xmp_OPEN DEBUG] Download success " << fpath << std::endl;
+                fd = open(fpath, fi->flags);
+                if (fd == -1)
+                {
+                    std::cout << "[xmp_OPEN DEBUG] Failed to open file after download " << fpath << std::endl;
+                    return -errno;
+                }
+            }
+            else
+            {
+                std::cout << "[DEBUG] Download failed " << fpath << std::endl;
+                return -ENOENT;
+            }
         }
         else
         {
-            std::cout << "[DEBUG] Download failed" << fpath << std::endl;
-            return -ENOENT;
+            return -errno;
         }
     }
 
+    fi->fh = fd;
     return 0;
 }
+
 
 static int xmp_read(const char *path, char *buf, size_t size, off_t offset,
                     struct fuse_file_info *fi)
