@@ -1,3 +1,5 @@
+#include <sys/types.h>
+#include <thread>
 #define FUSE_USE_VERSION 31
 
 #include <fuse.h>
@@ -30,6 +32,7 @@
 std::string remove_prefix(const char *input, const std::string &prefix);
 
 bool has_prefix(const char* str, const char* prefix);
+bool has_prefix2(const char* str, const char* prefix);
 
 /************************************************************************************/
 
@@ -47,7 +50,110 @@ void full_path(char fpath[1000], const char *path)
         strncat(fpath, path, 1000 - strlen(fpath) - 1); // Append path unless it's the root
 }
 
+// Download file async, firstly return the meta info of file, secondly download file needed.
 static int xmp_getattr(const char *path, struct stat *stbuf, struct fuse_file_info *fi)
+{
+    int res;
+    char fpath[1000];
+    memset(stbuf, 0, sizeof(struct stat));
+
+    if (strcmp(path, "/") == 0)
+    {
+        stbuf->st_mode = S_IFDIR | 0755;
+        stbuf->st_nlink = 2;
+        return 0;
+    }
+
+    full_path(fpath, path);
+    printf("[DEBUG getattr] getattr called on %s\n", path);
+    res = lstat(fpath, stbuf);
+
+    if (res == -1 && errno == ENOENT)
+    {
+        std::string file_name = remove_prefix(path, "/upperdir");        
+        printf("[DEBUG getattr] filename is %s\n", file_name.c_str());
+        // 在元信息中查找是否为目录，若为目录，则直接创建目录，并返回success
+        if (mp.find(file_name) != mp.end() && mp[file_name] == "directory") {
+            printf("[DEBUG getattr] directory %s need be created, fpath %s\n", file_name.c_str(), fpath);
+            mode_t mode = 0755;
+            res = mkdir(fpath, mode);
+            if (res == -1) {
+                errno = ENOENT;
+                return res;
+            }
+            res = lstat(fpath, stbuf);
+            if (res == -1) {
+                errno = ENOENT;
+            }
+            return res;
+        }
+        if (mp.find(file_name) != mp.end()) {
+            printf("[DEBUG getattr]%s exists\n", file_name.c_str());
+        }else {
+            printf("[DEBUG getattr]%s doesnot exists\n", file_name.c_str());
+        }
+        // 确保下层中没有这样的文件，当且仅当upperdir与lowerdirs中均不存在所需的文件，且该文件不为白化文件，才进行拉取
+        // if (!has_prefix(file_name.c_str(), ".wh.") && mp.find(file_name) != mp.end())
+        if (!has_prefix(file_name.c_str(), ".wh."))
+        {
+            printf("path %s, filename %s, fpath %s\n", path, file_name.c_str(), fpath);
+            int stat_res = get_stat_from_server(config->address_, config->image_, path, stbuf);
+
+            std::string path_str(path);
+            std::string fpath_str(fpath);
+            std::thread t([=]() {
+                download_file(config->address_, config->image_, path_str, fpath_str);
+                // 检查所访问对象是否为可执行文件，如果是可执行文件，则分析其所需的动态库
+                int stat_res = lstat(fpath, stbuf);
+
+                if (S_ISREG(stbuf->st_mode) && ((stbuf->st_mode & S_IXUSR) || (stbuf->st_mode & S_IXGRP) || (stbuf->st_mode & S_IXOTH)))
+                {
+                    printf("[DEBUG GETATTR] %s is executable file, try to fetch library\n", path);
+                    std::vector<std::string> libs;
+                    int lib_res = analyze_executable_libraries(fpath, libs);
+                    if (lib_res == -1)
+                    {
+                        printf("[DEBUG GETATTR] %s is not executable file\n", fpath);
+                        return;
+                    }
+                    for (int i = 0; i < libs.size(); ++i)
+                    {
+                        printf("[DEBUG GETATTR] try to download library %s\n", libs[i].c_str());
+                        char lib_path[1000];
+                        libs[i] = "/" + libs[i];
+                        full_path(lib_path, libs[i].c_str());
+                        struct stat *lib_stbuf;
+                        stat_res = lstat(lib_path, lib_stbuf);
+                        if (res == -1 && errno == ENOENT)
+                        {
+                            printf("[DEBUG GETATTR] library %s not exists\n", lib_path);
+                            if (download_file(config->address_, config->image_, libs[i].c_str(), lib_path) == 0)
+                            {
+                                printf("[DEBUG GETATTR] fetch library %s failed\n", lib_path);
+                                stat_res = lstat(lib_path, lib_stbuf);
+                            }
+                        }
+                    }
+                }
+            });
+            t.detach();
+
+            // if stat_res is not 0, return the file not exists
+            if (stat_res != 0) {
+                return -ENOENT;
+            }
+            return 0;
+        }
+        return -ENOENT;
+    }
+    if (res == -1)
+        return -errno;
+
+    return 0;
+}
+
+// Directly download file and return the file stat info
+static int xmp_getattr_without_prefetch(const char *path, struct stat *stbuf, struct fuse_file_info *fi)
 {
     int res;
     char fpath[1000];
@@ -66,10 +172,31 @@ static int xmp_getattr(const char *path, struct stat *stbuf, struct fuse_file_in
 
     if (res == -1 && errno == ENOENT)
     {
-        std::string file_name = remove_prefix(path, "/upperdir");
-        // 确保下层中没有这样的文件，当且仅当upperdir与lowerdirs中均不存在所需的文件，且该文件不为白化文件，
-        // 才进行拉取
-        if (!has_prefix(file_name.c_str(), ".wh.") && mp.find(file_name) == mp.end())
+        std::string file_name = remove_prefix(path, "/upperdir");        
+        printf("[DEBUG] filename is %s\n", file_name.c_str());
+        // 在元信息中查找是否为目录，若为目录，则直接创建目录，并返回success
+        if (mp.find(file_name) != mp.end() && mp[file_name] == "directory") {
+            printf("[DEBUG getattr] directory %s need be created, fpath %s\n", file_name.c_str(), fpath);
+            mode_t mode = 0755;
+            res = mkdir(fpath, mode);
+            if (res == -1) {
+                errno = ENOENT;
+                return res;
+            }
+            res = lstat(fpath, stbuf);
+            if (res == -1) {
+                errno = ENOENT;
+            }
+            return res;
+        }
+        if (mp.find(file_name) != mp.end()) {
+            printf("[DEBUG getattr]%s exists\n", file_name.c_str());
+        }else {
+            printf("[DEBUG getattr]%s doesnot exists\n", file_name.c_str());
+        }
+
+        // 确保下层中没有这样的文件，当且仅当upperdir与lowerdirs中均不存在所需的文件，且该文件不为白化文件，才进行拉取
+        if (!has_prefix(file_name.c_str(), ".wh.") && mp.find(file_name) != mp.end())
         {
             if (download_file(config->address_, config->image_, path, fpath) == 0)
             {
@@ -84,38 +211,38 @@ static int xmp_getattr(const char *path, struct stat *stbuf, struct fuse_file_in
         return -errno;
 
     // 检查所访问对象是否为可执行文件，如果是可执行文件，则分析其所需的动态库
-    if (S_ISREG(stbuf->st_mode) && ((stbuf->st_mode & S_IXUSR) || (stbuf->st_mode & S_IXGRP) || (stbuf->st_mode & S_IXOTH)))
-    {
-        std::cout << "[DEBUG] is executable file " << path << std::endl;
+    // if (S_ISREG(stbuf->st_mode) && ((stbuf->st_mode & S_IXUSR) || (stbuf->st_mode & S_IXGRP) || (stbuf->st_mode & S_IXOTH)))
+    // {
+    //     std::cout << "[DEBUG] is executable file " << path << std::endl;
 
-        std::vector<std::string> libs;
-        int lib_res = analyze_executable_libraries(fpath, libs);
-        if (lib_res == -1)
-        {
-            std::cout << "[DEBUG] executable file1 " << fpath << std::endl;
-            return -errno;
-        }
-        for (int i = 0; i < libs.size(); ++i)
-        {
-            std::cout << "[DEBUG] executable file2 " << fpath << std::endl;
-            char lib_path[1000];
-            libs[i] = "/" + libs[i];
-            full_path(lib_path, libs[i].c_str());
-            struct stat *lib_stbuf;
-            res = lstat(lib_path, lib_stbuf);
-            if (res == -1 && errno == ENOENT)
-            {
-                std::cout << "[DEBUG] executable file3 " << path << std::endl;
-                if (download_file(config->address_, config->image_, libs[i].c_str(), lib_path) == 0)
-                {
-                    std::cout << "[FATAL] fetch动态库失败 " << path << std::endl;
-                    res = lstat(lib_path, lib_stbuf);
-                    return (res == -1) ? -errno : 0;
-                }
-                return -errno;
-            }
-        }
-    }
+    //     std::vector<std::string> libs;
+    //     int lib_res = analyze_executable_libraries(fpath, libs);
+    //     if (lib_res == -1)
+    //     {
+    //         std::cout << "[DEBUG] executable file1 " << fpath << std::endl;
+    //         return -errno;
+    //     }
+    //     for (int i = 0; i < libs.size(); ++i)
+    //     {
+    //         std::cout << "[DEBUG] executable file2 " << fpath << std::endl;
+    //         char lib_path[1000];
+    //         libs[i] = "/" + libs[i];
+    //         full_path(lib_path, libs[i].c_str());
+    //         struct stat *lib_stbuf;
+    //         res = lstat(lib_path, lib_stbuf);
+    //         if (res == -1 && errno == ENOENT)
+    //         {
+    //             std::cout << "[DEBUG] executable file3 " << path << std::endl;
+    //             if (download_file(config->address_, config->image_, libs[i].c_str(), lib_path) == 0)
+    //             {
+    //                 std::cout << "[FATAL] fetch动态库失败 " << path << std::endl;
+    //                 res = lstat(lib_path, lib_stbuf);
+    //                 return (res == -1) ? -errno : 0;
+    //             }
+    //             return -errno;
+    //         }
+    //     }
+    // }
 
     return 0;
 }
@@ -135,52 +262,67 @@ static int xmp_access(const char *path, int mask)
 
 static int xmp_open(const char *path, struct fuse_file_info *fi)
 {
+    printf("[xmp_open] called on open %s\n", path);
     int fd;
     char fpath[1000];
     full_path(fpath, path);
 
+    if ((fi->flags & O_CREAT) && (fi->flags & O_EXCL)) {
+        printf("O_CREAT and O_EXCL flags set\n");
+    }
+
+    if ((fi->flags & O_TMPFILE)) {
+        printf("O_TMPFILE flags set\n");
+    }
+
     fd = open(fpath, fi->flags);
     if (fd == -1)
-        return -errno;
-
-    if (access(fpath, F_OK) != -1)
     {
-        // File exists, just return fd
-        fi->fh = fd;
-    }
-    else
-    {
-        // File doesn't exist, try to download it
-        std::cout << "[DEBUG] Try to download file" << fpath << std::endl;
-        if (download_file(config->address_, config->image_, path, fpath) == 0)
+        if (errno == ENOENT)
         {
-            std::cout << "[DEBUG] Download success" << fpath << std::endl;
-            fd = open(fpath, fi->flags);
-            fi->fh = fd;
+            std::cout << "[xmp_OPEN DEBUG] Try to download file " << fpath << std::endl;
+            if (download_file(config->address_, config->image_, path, fpath) == 0)
+            {
+                std::cout << "[xmp_OPEN DEBUG] Download success " << fpath << std::endl;
+                fd = open(fpath, fi->flags);
+                if (fd == -1)
+                {
+                    std::cout << "[xmp_OPEN DEBUG] Failed to open file after download " << fpath << std::endl;
+                    return -errno;
+                }
+            }
+            else
+            {
+                std::cout << "[DEBUG] Download failed " << fpath << std::endl;
+                return -ENOENT;
+            }
         }
         else
         {
-            std::cout << "[DEBUG] Download failed" << fpath << std::endl;
-            return -ENOENT;
+            return -errno;
         }
     }
 
+    fi->fh = fd;
     return 0;
 }
+
 
 static int xmp_read(const char *path, char *buf, size_t size, off_t offset,
                     struct fuse_file_info *fi)
 {
+    printf("[DEBUG READ] called on read path %s\n", path);
     int fd;
     int res;
     char fpath[1000];
     full_path(fpath, path);
     (void)fi;
-    std::cout << "[DEBUG] Try to read " << fpath << std::endl;
-    if (strstr(path, ".so"))
-    {
-        std::cout << "Dynamic library access attempt: " << path << std::endl;
-    }
+    // TODO: if dynamic library, try fetch it from remote
+    // std::cout << "[DEBUG] Try to read " << fpath << std::endl;
+    // if (strstr(path, ".so"))
+    // {
+    //     std::cout << "Dynamic library access attempt: " << path << std::endl;
+    // }
     fd = open(fpath, O_RDONLY);
     if (fd == -1)
         return -errno;
@@ -190,7 +332,7 @@ static int xmp_read(const char *path, char *buf, size_t size, off_t offset,
         res = -errno;
 
     close(fd);
-    printf("read called on %s\n", path);
+    // printf("read called on %s\n", path);
     return res;
 }
 
@@ -296,12 +438,20 @@ static int xmp_rename(const char *from, const char *to, unsigned int flags)
 
     if (flags)
         return -EINVAL;
-
+    
+    printf("[xmp_rename] to %s, fpath_to %s \n", to, fpath_to);
     res = rename(fpath_from, fpath_to);
+    // check if rename to 'workdir', if rename to workdir, means remove it from container
+    if(has_prefix2(to, "/workdir")) {
+        // remove file from mp, and it will try to fetch from remove
+        std::string file_name = remove_prefix(from, "/upperdir");
+        mp.erase(file_name);
+        printf("[xmp_rename] remove %s from mp\n", file_name.c_str());
+    }
     if (res == -1)
         return -errno;
 
-    printf("rename called from %s to %s\n", from, to);
+    printf("[xmp_rename] rename called from %s to %s\n", from, to);
     return 0;
 }
 
@@ -347,9 +497,13 @@ static int xmp_removexattr(const char *path, const char *name)
 
 static int xmp_symlink(const char *from, const char *to)
 {
-    char fpath[1000];
-    full_path(fpath, to);
-    int res = symlink(from, fpath);
+    printf("[xmp_symlink] called on link\n");    
+    char fpath_from[1000], fpath_to[1000];
+    full_path(fpath_from, from);
+    full_path(fpath_to, to);
+    
+    printf("[xmp_symlink] fpath_from %s, fpath_to %s\n", fpath_from, fpath_to);
+    int res = symlink(fpath_from, fpath_to);
     if (res == -1)
         return -errno;
     return 0;
@@ -478,11 +632,14 @@ static int xmp_create(const char *path, mode_t mode, struct fuse_file_info *fi)
     int fd;
 
     // 正常创建文件
+    printf("[xmp_create] called on create\n");
     full_path(fpath, path);
+    printf("[xmp_create] fpath %s\n", fpath);
     fd = open(fpath, fi->flags, mode);
 
     if (fd == -1)
     {
+        printf("[xmp_create] return errno %d\n", -errno);
         return -errno;
     }
 
@@ -490,8 +647,36 @@ static int xmp_create(const char *path, mode_t mode, struct fuse_file_info *fi)
     return 0;
 }
 
+static int xmp_statfs(const char *path, struct statvfs *stbuf)
+{
+    printf("[xmp_statfs] called on statfs\n");
+    char fpath[1000];
+    full_path(fpath, path);
+    printf("[xmp_statfs] stat:%s, real path:%s", path, fpath);
+    int res = statvfs(fpath, stbuf);
+    if (res == -1)
+        return -errno;
+    return 0;
+}
+
+static int xmp_link(const char *oldpath, const char *newpath)
+{
+    printf("[xmp_link] called on link\n");    
+    char fpath_old_path[1000], fpath_new_path[1000];
+    full_path(fpath_old_path, oldpath);
+    full_path(fpath_new_path, newpath);
+    int res;
+
+    res = link(fpath_old_path, newpath);
+    if (res == -1)
+        return -errno;
+
+    return 0;
+}
+
+
 static struct fuse_operations xmp_oper = {
-    .getattr = xmp_getattr,
+    .getattr = xmp_getattr_without_prefetch,
     .readlink = xmp_readlink,
     .mknod = xmp_mknod,
     .mkdir = xmp_mkdir,
@@ -499,13 +684,14 @@ static struct fuse_operations xmp_oper = {
     .rmdir = xmp_rmdir,
     .symlink = xmp_symlink,
     .rename = xmp_rename,
+    .link = xmp_link,
     .chmod = xmp_chmod,
     .chown = xmp_chown,
     .truncate = xmp_truncate,
-
     .open = xmp_open,
     .read = xmp_read,
     .write = xmp_write,
+    .statfs = xmp_statfs,
     .release = xmp_release,
     .fsync = xmp_fsync,
     .setxattr = xmp_setxattr,
@@ -521,7 +707,7 @@ static struct fuse_operations xmp_oper = {
 void xmp_init()
 {
     // 从镜像的JSON元信息中读取文件信息，并放至内存中
-    FILE *fp = fopen("./files.json", "r"); // 非 Windows 平台使用 "r"
+    FILE *fp = fopen("./directory_contents.json", "r"); // 非 Windows 平台使用 "r"
 
     char readBuffer[65536];
     rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
@@ -540,6 +726,14 @@ void xmp_init()
     }
 
     // std::cout << "[DEBUG] mp.size" << mp.size() << std::endl;
+    int i = 0;
+    for (const auto& x: mp) {
+        i++;
+        if (i > 10) {
+            break;
+        }
+        std::cout  << x.first << " " << x.second << std::endl;
+    }
 
     // 从文件系统的JSON配置信息中读取文件信息，并放至内存中
     FILE *config_fp = fopen("./config.json", "r"); // 非 Windows 平台使用 "r"
@@ -595,7 +789,6 @@ int main(int argc, char *argv[])
 
     // Convert vector back to array for fuse_main
     int fuse_argc = static_cast<int>(fuse_argv.size());
-
     for(int i = 0; i < fuse_argc; ++i) {
         std::cout << fuse_argv[i] << std::endl;
     }
